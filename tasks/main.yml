@@ -60,6 +60,10 @@
   homebrew: "name={{ item }} state=present"
   with_items: homebrew_installed_packages
 
+# see https://github.com/caskroom/homebrew-cask/issues/15930
+- name: Remove brew-cask
+  homebrew: name=brew-cask state=absent
+
 - name: Upgrade all homebrew packages (if configured).
   homebrew: update_homebrew=yes upgrade_all=yes
   when: homebrew_upgrade_all_packages
